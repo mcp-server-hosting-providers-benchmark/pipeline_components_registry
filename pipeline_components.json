@@ -27,8 +27,8 @@
     "github_repo": "NK5NK5/remote_mcp_hosting_provider_latency_collector",
     "friction": "Pinger results are scattered (local MacBook + GitHub Actions artifacts) — analyzer needs a single consolidated source",
     "input": "pipeline_components.json (this registry) — reads result locations from each pinger entry",
-    "output": "consolidated directory of all tools_list_*.json and tools_call_*.json files",
-    "status": "not yet created"
+    "output": "branche `data` du repo — fichiers individuels par run, append-only, listables via GET /repos/NK5NK5/remote_mcp_hosting_provider_latency_collector/git/trees/data?recursive=1",
+    "status": "operational 2026-04-11"
   },
   {
     "name": "remote_mcp_hosting_provider_tools_list_latency_analysis",
