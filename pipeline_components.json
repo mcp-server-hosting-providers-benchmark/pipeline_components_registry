@@ -36,7 +36,22 @@
     "friction": "Need automated tools/call latency measurements to complement tools/list data",
     "input": "mcp_servers_under_test.json (this registry)",
     "output": "tools_call_TIMESTAMP.json files — local results/ + GitHub Actions artifacts (90d retention)",
-    "schedule": "every 2h UTC odd hours +50min (GitHub Actions)"
+    "data_url": "https://api.github.com/repos/NK5NK5/remote_mcp_hosting_provider_tools_call_latency_measurement/actions/runs",
+    "pingers": [
+      {
+        "label": "paris_fr",
+        "source": "launchd_macbook",
+        "schedule": "every 2h at even UTC hours +50min",
+        "active": true
+      },
+      {
+        "label": "github_actions_us_east",
+        "source": "github_actions",
+        "schedule": "every 2h at odd UTC hours +50min",
+        "active": true,
+        "data_url": "https://api.github.com/repos/NK5NK5/remote_mcp_hosting_provider_tools_call_latency_measurement/actions/runs"
+      }
+    ]
   },
   {
     "name": "remote_mcp_hosting_provider_latency_collector",
