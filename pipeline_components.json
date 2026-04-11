@@ -24,9 +24,9 @@
       {
         "label": "github_actions_us_east",
         "source": "github_actions",
-        "workflow": ".github/workflows/benchmark.yml",
         "schedule": "every 2h at even UTC hours",
-        "active": true
+        "active": true,
+        "data_url": "https://api.github.com/repos/NK5NK5/remote_mcp_hosting_provider_tools_list_latency_measurement/actions/runs"
       }
     ]
   },
