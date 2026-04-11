@@ -1,0 +1,5 @@
+{
+  "friction": "No single entry point exists for an agent to discover the full benchmark pipeline — components, MCP servers under test, and result locations are scattered across multiple repos.",
+  "input": "none — this repo is a read-only registry",
+  "output": "mcp_servers_under_test.json, pipeline_components.json — publicly accessible via GitHub raw URLs"
+}

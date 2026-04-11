@@ -1,0 +1,41 @@
+[
+  {
+    "name": "remote_mcp_server_per_hosting_provider",
+    "github_repo": "NK5NK5/remote_mcp_server_per_hosting_provider",
+    "friction": "Need real MCP servers deployed across multiple hosting providers to measure actual latency",
+    "input": "none",
+    "output": "8 live MCP servers, one per hosting provider"
+  },
+  {
+    "name": "remote_mcp_hosting_provider_tools_list_latency_measurement",
+    "github_repo": "NK5NK5/remote_mcp_hosting_provider_tools_list_latency_measurement",
+    "friction": "Need automated tools/list latency measurements from multiple geographic locations",
+    "input": "mcp_servers_under_test.json (this registry)",
+    "output": "tools_list_TIMESTAMP.json files — local results/ + GitHub Actions artifacts (90d retention)",
+    "schedule": "every 2h UTC even hours (GitHub Actions) + every 2h MacBook launchd"
+  },
+  {
+    "name": "remote_mcp_hosting_provider_tools_call_latency_measurement",
+    "github_repo": "NK5NK5/remote_mcp_hosting_provider_tools_call_latency_measurement",
+    "friction": "Need automated tools/call latency measurements to complement tools/list data",
+    "input": "mcp_servers_under_test.json (this registry)",
+    "output": "tools_call_TIMESTAMP.json files — local results/ + GitHub Actions artifacts (90d retention)",
+    "schedule": "every 2h UTC odd hours +50min (GitHub Actions)"
+  },
+  {
+    "name": "remote_mcp_hosting_provider_latency_collector",
+    "github_repo": "NK5NK5/remote_mcp_hosting_provider_latency_collector",
+    "friction": "Pinger results are scattered (local MacBook + GitHub Actions artifacts) — analyzer needs a single consolidated source",
+    "input": "pipeline_components.json (this registry) — reads result locations from each pinger entry",
+    "output": "consolidated directory of all tools_list_*.json and tools_call_*.json files",
+    "status": "not yet created"
+  },
+  {
+    "name": "remote_mcp_hosting_provider_tools_list_latency_analysis",
+    "github_repo": "NK5NK5/remote_mcp_hosting_provider_tools_list_latency_analysis",
+    "friction": "Raw JSON measurement files need aggregation to produce comparable latency rankings across providers",
+    "input": "consolidated results directory (from collector)",
+    "output": "JSON ranking: providers ordered by p50/p95/p99 latency, success rate, observed server geo",
+    "status": "exists, awaiting collector"
+  }
+]
