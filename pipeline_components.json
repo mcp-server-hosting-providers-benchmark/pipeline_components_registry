@@ -1,6 +1,6 @@
 [
   {
-    "name": "remote_mcp_server_per_hosting_provider",
+    "name": "mcp_server_per_hosting_provider",
     "github_repo": "NK5NK5/remote_mcp_server_per_hosting_provider",
     "friction": "Need real MCP servers deployed across multiple hosting providers to measure actual latency",
     "input": "none",
@@ -8,7 +8,7 @@
     "data_url": "https://api.github.com/repos/NK5NK5/remote_mcp_server_per_hosting_provider/git/trees/data?recursive=1"
   },
   {
-    "name": "remote_mcp_hosting_provider_tools_list_latency_measurement",
+    "name": "tools_list_latency_measurer",
     "github_repo": "NK5NK5/remote_mcp_hosting_provider_tools_list_latency_measurement",
     "friction": "Need automated tools/list latency measurements from multiple geographic locations",
     "input": "mcp_servers_under_test.json (this registry)",
@@ -31,43 +31,12 @@
     ]
   },
   {
-    "name": "remote_mcp_hosting_provider_tools_call_latency_measurement",
-    "github_repo": "NK5NK5/remote_mcp_hosting_provider_tools_call_latency_measurement",
-    "friction": "Need automated tools/call latency measurements to complement tools/list data",
-    "input": "mcp_servers_under_test.json (this registry)",
-    "output": "tools_call_TIMESTAMP.json files — local results/ + GitHub Actions artifacts (90d retention)",
-    "data_url": "https://api.github.com/repos/NK5NK5/remote_mcp_hosting_provider_tools_call_latency_measurement/actions/runs",
-    "pingers": [
-      {
-        "label": "paris_fr",
-        "source": "launchd_macbook",
-        "schedule": "every 2h at even UTC hours +50min",
-        "active": true
-      },
-      {
-        "label": "github_actions_us_east",
-        "source": "github_actions",
-        "schedule": "every 2h at odd UTC hours +50min",
-        "active": true,
-        "data_url": "https://api.github.com/repos/NK5NK5/remote_mcp_hosting_provider_tools_call_latency_measurement/actions/runs"
-      }
-    ]
-  },
-  {
-    "name": "remote_mcp_hosting_provider_latency_collector",
+    "name": "latency_measurement_results_collector",
     "github_repo": "NK5NK5/remote_mcp_hosting_provider_latency_collector",
     "friction": "Pinger results are scattered (local MacBook + GitHub Actions artifacts) — analyzer needs a single consolidated source",
     "input": "pipeline_components.json (this registry) — reads result locations from each pinger entry",
     "output": "individual result files pushed append-only to the `data` branch — one file per run, never modified",
     "data_url": "https://api.github.com/repos/NK5NK5/remote_mcp_hosting_provider_latency_collector/git/trees/data?recursive=1",
     "status": "operational 2026-04-11"
-  },
-  {
-    "name": "remote_mcp_hosting_provider_tools_list_latency_analysis",
-    "github_repo": "NK5NK5/remote_mcp_hosting_provider_tools_list_latency_analysis",
-    "friction": "Raw JSON measurement files need aggregation to produce comparable latency rankings across providers",
-    "input": "consolidated results directory (from collector)",
-    "output": "JSON ranking: providers ordered by p50/p95/p99 latency, success rate, observed server geo",
-    "status": "exists, awaiting collector"
   }
 ]
