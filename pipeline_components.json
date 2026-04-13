@@ -63,16 +63,6 @@
     "status": "operational 2026-04-11"
   },
   {
-    "name": "remote_mcp_hosting_provider_verification_report_aggregator",
-    "github_repo": "NK5NK5/remote_mcp_hosting_provider_verification_report_aggregator",
-    "friction": "Pipeline components can fail silently — no transverse automated health check exists",
-    "input": "pipeline_components.json (this registry) — reads latest verify_report from each component with a data_url",
-    "output": "aggregated_verification_report_TIMESTAMP.json — pass/fail per component",
-    "data_url": "https://api.github.com/repos/NK5NK5/remote_mcp_hosting_provider_verification_report_aggregator/git/trees/data?recursive=1",
-    "schedule": "every 4h (GitHub Actions)",
-    "status": "operational 2026-04-11"
-  },
-  {
     "name": "remote_mcp_hosting_provider_tools_list_latency_analysis",
     "github_repo": "NK5NK5/remote_mcp_hosting_provider_tools_list_latency_analysis",
     "friction": "Raw JSON measurement files need aggregation to produce comparable latency rankings across providers",
