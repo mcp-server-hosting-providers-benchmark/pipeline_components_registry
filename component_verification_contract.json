@@ -1,0 +1,95 @@
+{
+  "component": "pipeline_components_registry",
+  "verify_script": "node verify.js",
+  "report_output": "data branch — verify_report_TIMESTAMP.json",
+  "result_states": [
+    "pass",
+    "fail"
+  ],
+  "levels": [
+    {
+      "level": 1,
+      "name": "discoverability",
+      "description": "Can an agent with no prior knowledge of this project fetch the registry and read its contents?",
+      "checks": [
+        {
+          "id": "registry_url_responds",
+          "description": "The public registry URL returns HTTP 200",
+          "url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/pipeline_components.json"
+        },
+        {
+          "id": "registry_returns_valid_json",
+          "description": "The response body is a valid JSON array"
+        },
+        {
+          "id": "component_contract_accessible",
+          "description": "component_contract.json is publicly accessible from this repo",
+          "url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/component_contract.json"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "name": "self_reference",
+      "description": "Does the registry list itself as a component, with correct fields pointing back to itself?",
+      "checks": [
+        {
+          "id": "registry_has_self_entry",
+          "description": "The registry contains an entry with name = pipeline_components_registry"
+        },
+        {
+          "id": "self_entry_has_output_url",
+          "description": "The self-entry has a non-empty output_url field"
+        },
+        {
+          "id": "self_entry_output_url_matches",
+          "description": "The output_url in the self-entry matches the URL the registry was fetched from",
+          "expected_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/pipeline_components.json"
+        },
+        {
+          "id": "verify_script_present",
+          "description": "verify.js is publicly accessible from this repo",
+          "url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/verify.js"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "name": "completeness",
+      "description": "Does every entry in the registry have all required fields?",
+      "required_fields": [
+        "name",
+        "github_repo",
+        "friction",
+        "input",
+        "output",
+        "output_url",
+        "verify_reports_url"
+      ],
+      "expected_component_count": 5,
+      "checks": [
+        {
+          "id": "expected_component_count",
+          "description": "The registry contains exactly 5 components"
+        },
+        {
+          "id": "all_entries_have_required_fields",
+          "description": "Every entry has the following fields: name, github_repo, friction, input, output, output_url, verify_reports_url",
+          "per_entry": true
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "name": "repos_accessible",
+      "description": "Is every GitHub repository listed in the registry accessible?",
+      "checks": [
+        {
+          "id": "repo_accessible",
+          "description": "Each github_repo listed in the registry responds with HTTP 200 on the GitHub API",
+          "per_entry": true
+        }
+      ]
+    }
+  ]
+}
