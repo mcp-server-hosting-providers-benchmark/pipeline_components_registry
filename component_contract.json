@@ -1,5 +1,8 @@
 {
-  "friction": "No single entry point exists for an agent to discover the full benchmark pipeline — components, MCP servers under test, and result locations are scattered across multiple repos.",
-  "input": "none — this repo is a read-only registry",
-  "output": "mcp_servers_under_test.json, pipeline_components.json — publicly accessible via GitHub raw URLs"
+  "name": "pipeline_components_registry",
+  "friction": "An agent starting fresh on the MCP server hosting provider latency benchmark project has no way to discover which components exist, what each one does, where its output is stored, or how to verify that it is working correctly.",
+  "input": "none — this file is maintained manually each time a component is added, removed, or updated",
+  "output": "pipeline_components.json — a list of all components in the MCP server hosting provider latency benchmark project, with for each component: its name, the URL to read its full description, the URL to read its output, the URL to read its verification reports, and its verification schedule",
+  "when_to_use": "Fetch component_output_url when starting fresh on this project with no prior knowledge — it gives the full list of all components and the URLs needed to discover each one.",
+  "when_not_to_use": "To read the detailed description of a specific component — fetch that component's component_contract_url instead."
 }
