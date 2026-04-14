@@ -1,8 +1,6 @@
 name: verify
 
 on:
-  schedule:
-    - cron: "0 */2 * * *"   # every 2 hours at even UTC hours
   workflow_dispatch:
 
 permissions:
