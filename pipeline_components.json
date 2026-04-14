@@ -7,6 +7,7 @@
     "output": "pipeline_components.json — the list of all benchmark components with their roles, data locations, and connections",
     "output_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/pipeline_components.json",
     "verify_reports_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/pipeline_components_registry/git/trees/data?recursive=1",
+    "verify_schedule": "every 2h at even UTC hours",
     "when_to_use": "Fetch this URL first when you have no prior knowledge of this project — it gives you the full list of components and where to find each one"
   },
   {
@@ -17,7 +18,8 @@
     "output": "8 live MCP servers, one per hosting provider",
     "output_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/mcp_server_per_hosting_provider/main/mcp_servers_under_test.json",
     "data_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/mcp_server_per_hosting_provider/git/trees/data?recursive=1",
-    "verify_reports_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/mcp_server_per_hosting_provider/git/trees/data?recursive=1"
+    "verify_reports_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/mcp_server_per_hosting_provider/git/trees/data?recursive=1",
+    "verify_schedule": "once a day at 3h UTC"
   },
   {
     "name": "tools_list_latency_measurer",
@@ -27,6 +29,7 @@
     "output": "tools_list_TIMESTAMP.json files — local results/ + GitHub Actions artifacts (90d retention)",
     "data_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/tools_list_latency_measurer/git/trees/data?recursive=1",
     "verify_reports_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/tools_list_latency_measurer/git/trees/data?recursive=1",
+    "verify_schedule": "once a day at 3h UTC",
     "pingers": [
       {
         "label": "paris_fr",
