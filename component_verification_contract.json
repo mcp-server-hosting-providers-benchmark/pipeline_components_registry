@@ -1,6 +1,7 @@
 {
   "component": "pipeline_components_registry",
   "verify_script": "node verify.js",
+  "verify_reports_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/pipeline_components_registry/git/trees/data?recursive=1",
   "report_output": "data branch — verify_report_TIMESTAMP.json",
   "result_states": [
     "pass",
