@@ -35,15 +35,15 @@
       "checks": [
         {
           "id": "registry_has_self_entry",
-          "description": "The registry contains an entry with name = pipeline_components_registry"
+          "description": "The registry contains an entry with component_name = pipeline_components_registry"
         },
         {
           "id": "self_entry_has_output_url",
-          "description": "The self-entry has a non-empty output_url field"
+          "description": "The self-entry has a non-empty component_output_url field"
         },
         {
           "id": "self_entry_output_url_matches",
-          "description": "The output_url in the self-entry matches the URL the registry was fetched from",
+          "description": "The component_output_url in the self-entry matches the URL the registry was fetched from",
           "expected_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/pipeline_components.json"
         },
         {
@@ -58,13 +58,10 @@
       "name": "completeness",
       "description": "Does every entry in the registry have all required fields?",
       "required_fields": [
-        "name",
-        "github_repo",
-        "friction",
-        "input",
-        "output",
-        "output_url",
-        "verify_reports_url"
+        "component_name",
+        "component_contract_url",
+        "component_output_url",
+        "component_verify_reports_url"
       ],
       "expected_component_count": 5,
       "checks": [
@@ -74,7 +71,7 @@
         },
         {
           "id": "all_entries_have_required_fields",
-          "description": "Every entry has the following fields: name, github_repo, friction, input, output, output_url, verify_reports_url",
+          "description": "Every entry has the following fields: component_name, component_contract_url, component_output_url, component_verify_reports_url",
           "per_entry": true
         }
       ]
@@ -85,8 +82,8 @@
       "description": "Is every GitHub repository listed in the registry accessible?",
       "checks": [
         {
-          "id": "repo_accessible",
-          "description": "Each github_repo listed in the registry responds with HTTP 200 on the GitHub API",
+          "id": "contract_url_accessible",
+          "description": "The component_contract_url of each entry responds with HTTP 200",
           "per_entry": true
         }
       ]

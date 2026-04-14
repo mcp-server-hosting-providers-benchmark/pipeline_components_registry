@@ -83,25 +83,25 @@ function checkSelfReference(registry) {
   }
 
   // registry_has_self_entry
-  const selfEntry = registry.find((c) => c.name === CONTRACT.component);
+  const selfEntry = registry.find((c) => c.component_name === CONTRACT.component);
   results.push(selfEntry
     ? pass("registry_has_self_entry")
-    : fail("registry_has_self_entry", `no entry with name = ${CONTRACT.component} found in the registry`));
+    : fail("registry_has_self_entry", `no entry with component_name = ${CONTRACT.component} found in the registry`));
 
   // self_entry_has_output_url
-  if (selfEntry?.output_url) {
+  if (selfEntry?.component_output_url) {
     results.push(pass("self_entry_has_output_url"));
   } else {
-    results.push(fail("self_entry_has_output_url", "output_url field is missing or empty in the self-entry"));
+    results.push(fail("self_entry_has_output_url", "component_output_url field is missing or empty in the self-entry"));
   }
 
   // self_entry_output_url_matches
   const expectedUrl = CONTRACT.levels[1].checks[2].expected_url;
-  if (selfEntry?.output_url === expectedUrl) {
+  if (selfEntry?.component_output_url === expectedUrl) {
     results.push(pass("self_entry_output_url_matches"));
   } else {
     results.push(fail("self_entry_output_url_matches",
-      `expected "${expectedUrl}", got "${selfEntry?.output_url ?? "undefined"}"`));
+      `expected "${expectedUrl}", got "${selfEntry?.component_output_url ?? "undefined"}"`));
   }
 
   // verify_script_present
@@ -135,23 +135,22 @@ function checkCompleteness(registry) {
   for (const entry of registry) {
     const missing = requiredFields.filter((f) => !entry[f]);
     results.push(missing.length === 0
-      ? pass(`entry_required_fields_${entry.name}`)
-      : fail(`entry_required_fields_${entry.name}`, `missing fields: ${missing.join(", ")}`));
+      ? pass(`entry_required_fields_${entry.component_name}`)
+      : fail(`entry_required_fields_${entry.component_name}`, `missing fields: ${missing.join(", ")}`));
   }
 
   return results;
 }
 
-// --- level 4 — repos_accessible ---------------------------------------------
+// --- level 4 — contract_urls_accessible --------------------------------------
 
-function checkReposAccessible(registry) {
-  if (!registry) return [fail("repo_accessible", "skipped — registry could not be read")];
+function checkContractUrlsAccessible(registry) {
+  if (!registry) return [fail("contract_url_accessible", "skipped — registry could not be read")];
 
   return registry.map((entry) => {
-    const url = `https://api.github.com/repos/${entry.github_repo}`;
-    return httpOk(url)
-      ? pass(`repo_accessible_${entry.name}`)
-      : fail(`repo_accessible_${entry.name}`, `GitHub API returned non-200 for ${entry.github_repo}`);
+    return httpOk(entry.component_contract_url)
+      ? pass(`contract_url_accessible_${entry.component_name}`)
+      : fail(`contract_url_accessible_${entry.component_name}`, `component_contract_url returned non-200 for ${entry.component_name}`);
   });
 }
 
@@ -195,9 +194,9 @@ function pushReport(report) {
 const { results: discoverability, registry } = checkDiscoverability();
 const selfReference = checkSelfReference(registry);
 const completeness = checkCompleteness(registry);
-const reposAccessible = checkReposAccessible(registry);
+const contractUrlsAccessible = checkContractUrlsAccessible(registry);
 
-const allChecks = [...discoverability, ...selfReference, ...completeness, ...reposAccessible];
+const allChecks = [...discoverability, ...selfReference, ...completeness, ...contractUrlsAccessible];
 
 const summary = {
   pass: allChecks.filter((c) => c.status === "pass").length,
