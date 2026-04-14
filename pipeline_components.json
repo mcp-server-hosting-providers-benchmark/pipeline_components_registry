@@ -38,5 +38,15 @@
     "output": "individual result files pushed append-only to the `data` branch — one file per run, never modified",
     "data_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/latency_measurement_results_collector/git/trees/data?recursive=1",
     "status": "operational 2026-04-11"
+  },
+  {
+    "name": "pipeline_migration_verification_checklist",
+    "github_repo": "mcp-server-hosting-providers-benchmark/pipeline_migration_verification_checklist",
+    "friction": "After a directory or GitHub org migration, an agent has no systematic way to verify that all references, remotes, plists, and verifiers are clean and operational",
+    "input": "OLD (value being replaced), NEW (replacement value)",
+    "output": "Structured JSON report — checks_run, passed, failed, per-check status with raw output and action_taken",
+    "data_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_migration_verification_checklist/main/post_migration_verification_checklist.json",
+    "when_to_use": "After any migration of directory paths or GitHub organization on this project — run before declaring the migration complete",
+    "when_not_to_use": "For day-to-day component health monitoring — use each component's own verify.js instead"
   }
 ]
