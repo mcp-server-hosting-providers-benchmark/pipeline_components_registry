@@ -43,6 +43,10 @@
         {
           "name": "Fly.io",
           "reason": "No permanent free tier. Fly.io offers a 2-hour or 7-day trial only, after which a credit card is required to run any app. A benchmark that requires paid infrastructure cannot be reproduced freely by the community."
+        },
+        {
+          "name": "Replit",
+          "reason": "Free plan published apps go offline automatically after 30 days. A benchmark requires servers that stay up permanently. Keeping a server running beyond 30 days requires a paid Core plan at $18/month."
         }
       ],
       "providers_not_yet_in_benchmark": [
