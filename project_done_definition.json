@@ -1,0 +1,73 @@
+{
+  "project": "MCP server hosting provider latency benchmark — a pipeline that measures response time of remote MCP servers from multiple geographic locations and publishes results on a public website.",
+  "as_of": "2026-04-16",
+  "done_when": {
+    "condition_1_pinger_geographic_coverage": {
+      "description": "Pingers (scripts that call each MCP server and record response time) are deployed in all major regions of the world.",
+      "required_regions": [
+        "Europe",
+        "North America",
+        "South America",
+        "Asia",
+        "Oceania",
+        "Africa",
+        "Middle East"
+      ],
+      "two_placement_types_required": {
+        "type_a_near_end_users": {
+          "description": "Pingers placed near human users who run MCP clients locally on their device (desktop app, CLI). One pinger per major inhabited region.",
+          "rationale": "When the MCP client runs on the user's device, the latency the user experiences depends on how far their device is from the MCP server."
+        },
+        "type_b_near_llm_data_centers": {
+          "description": "Pingers placed near the data centers of the main LLM providers (e.g. OpenAI, Anthropic, Google). List of target LLMs to be established before placing these pingers.",
+          "rationale": "When the MCP client runs server-side (e.g. ChatGPT iOS app, Claude web, API integrations), the latency depends on how far the LLM's server is from the MCP server — not the user's device location."
+        }
+      }
+    },
+    "condition_2_hosting_provider_coverage": {
+      "description": "The list of MCP server hosting providers being measured covers the main options available to developers.",
+      "minimum_count": 10,
+      "current_providers_already_in_benchmark": [
+        "Cloudflare Workers",
+        "Vercel",
+        "Netlify",
+        "Railway",
+        "Supabase Edge Functions",
+        "Fermyon",
+        "Val Town",
+        "Render"
+      ],
+      "providers_to_add_before_closing": [
+        {
+          "name": "Fly.io",
+          "reason": "Recommended by OpenAI in their official MCP server deployment guide at https://developers.openai.com/apps-sdk/deploy"
+        },
+        {
+          "name": "Google Cloud Run",
+          "reason": "Recommended by OpenAI in their official MCP server deployment guide at https://developers.openai.com/apps-sdk/deploy"
+        },
+        {
+          "name": "Azure Container Apps",
+          "reason": "Recommended by OpenAI in their official MCP server deployment guide at https://developers.openai.com/apps-sdk/deploy"
+        },
+        {
+          "name": "Replit",
+          "reason": "Code-hosting platform with always-on deployments, popular among developers"
+        },
+        {
+          "name": "Alpic",
+          "reason": "Maintains a ready-to-deploy Apps SDK starter for MCP servers, recommended by OpenAI in their official deployment guide at https://developers.openai.com/apps-sdk/deploy"
+        }
+      ],
+      "note": "No fixed maximum number of providers. ~10 is already sufficient."
+    },
+    "condition_3_ping_frequency_validated": {
+      "description": "The interval between pings has been chosen deliberately, based on evidence — not left at the default 2-hour interval.",
+      "question_to_answer": "Does pinging every 2 hours keep the MCP server warm, so that measured latency is lower than what a real user would experience on a cold server?",
+      "risk": "If multiple pingers hit the same MCP server at the same time or within a short window, the server may stay warm between pings. The benchmark would then measure warm-start latency, not cold-start latency. Cold-start latency is what a real user experiences after a period of inactivity.",
+      "done_when": "A decision has been made on ping frequency — either: (a) the interval is long enough to guarantee cold starts (to be determined per hosting provider), or (b) the benchmark explicitly documents that it measures warm-start latency and explains why that is the chosen methodology.",
+      "current_interval": "every 2 hours at even UTC hours (0 */2 * * *)",
+      "note": "Pinger schedules are currently synchronized — all pingers fire at the same UTC hour. This synchronization may amplify the warm-start effect. Staggering pinger schedules is one option to investigate."
+    }
+  }
+}

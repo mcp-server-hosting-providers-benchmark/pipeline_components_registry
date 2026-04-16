@@ -1,5 +1,13 @@
 [
   {
+    "component_name": "project_done_definition",
+    "component_contract_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/pipeline_components.json",
+    "component_output_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/project_done_definition.json",
+    "component_verify_reports_url": null,
+    "component_verify_schedule": null,
+    "when_to_use": "Fetch component_output_url when you need to answer the question: 'Is the MCP server hosting provider latency benchmark finished?' — it lists the exact conditions that must all be true for the project to be considered complete."
+  },
+  {
     "component_name": "pipeline_components_registry",
     "component_contract_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/component_contract.json",
     "component_output_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_components_registry/main/pipeline_components.json",
