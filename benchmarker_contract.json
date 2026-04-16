@@ -39,11 +39,13 @@
         "Val Town",
         "Render"
       ],
-      "providers_not_yet_in_benchmark": [
+      "providers_excluded_from_benchmark": [
         {
           "name": "Fly.io",
-          "reason": "Recommended by OpenAI in their official MCP server deployment guide at https://developers.openai.com/apps-sdk/deploy"
-        },
+          "reason": "No permanent free tier. Fly.io offers a 2-hour or 7-day trial only, after which a credit card is required to run any app. A benchmark that requires paid infrastructure cannot be reproduced freely by the community."
+        }
+      ],
+      "providers_not_yet_in_benchmark": [
         {
           "name": "Google Cloud Run",
           "reason": "Recommended by OpenAI in their official MCP server deployment guide at https://developers.openai.com/apps-sdk/deploy"
