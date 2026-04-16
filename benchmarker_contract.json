@@ -39,6 +39,7 @@
         "Val Town",
         "Render"
       ],
+      "methodological_rule_pinger_provider_separation": "A hosting provider cannot serve both as a benchmarked MCP server and as a pinger platform. If a provider hosts both the pinger and the MCP server being measured, the two may share internal network infrastructure, producing artificially low latency that does not reflect real-world conditions for external users. Each provider must play exactly one role: either benchmarked MCP server or pinger platform.",
       "providers_excluded_from_benchmark": [
         {
           "name": "Fly.io",
@@ -47,6 +48,10 @@
         {
           "name": "Replit",
           "reason": "Free plan published apps go offline automatically after 30 days. A benchmark requires servers that stay up permanently. Keeping a server running beyond 30 days requires a paid Core plan at $18/month."
+        },
+        {
+          "name": "Google Cloud Run",
+          "reason": "Used as the pinger platform — deployed in multiple regions to measure latency of all other MCP servers. A provider cannot be both a pinger and a benchmarked MCP server: pinging its own infrastructure would produce artificially low latency due to potential internal network routing. Same rule applies to Cloudflare Workers, which is in the benchmark as an MCP server and therefore cannot be used as a pinger."
         }
       ],
       "providers_not_yet_in_benchmark": [
