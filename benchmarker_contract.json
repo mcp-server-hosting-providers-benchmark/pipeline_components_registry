@@ -1,7 +1,9 @@
 {
-  "project": "MCP server hosting provider latency benchmark — a pipeline that measures response time of remote MCP servers from multiple geographic locations and publishes results on a public website.",
-  "as_of": "2026-04-16",
-  "done_when": {
+  "name": "remote_mcp_server_hosting_provider_benchmarker",
+  "friction": "Developers choosing a hosting provider for their MCP server have no data on how response time varies by provider or by the geographic location of the caller.",
+  "input": "none — this is an always-on pipeline. It runs continuously without manual input.",
+  "output": "A public website that shows, for each MCP server hosting provider, the measured response time (minimum, P50, P95, P99, maximum) broken down by the geographic location of the pinger that made the call. URL: https://mcp-server-hosting-providers-benchmark.github.io/tools_list_latency_publisher/",
+  "output_is_complete_when": {
     "condition_1_pinger_geographic_coverage": {
       "description": "Pingers (scripts that call each MCP server and record response time) are deployed in all major regions of the world.",
       "required_regions": [
@@ -27,7 +29,7 @@
     "condition_2_hosting_provider_coverage": {
       "description": "The list of MCP server hosting providers being measured covers the main options available to developers.",
       "minimum_count": 10,
-      "current_providers_already_in_benchmark": [
+      "current_providers_in_benchmark": [
         "Cloudflare Workers",
         "Vercel",
         "Netlify",
@@ -37,7 +39,7 @@
         "Val Town",
         "Render"
       ],
-      "providers_to_add_before_closing": [
+      "providers_not_yet_in_benchmark": [
         {
           "name": "Fly.io",
           "reason": "Recommended by OpenAI in their official MCP server deployment guide at https://developers.openai.com/apps-sdk/deploy"
@@ -58,16 +60,16 @@
           "name": "Alpic",
           "reason": "Maintains a ready-to-deploy Apps SDK starter for MCP servers, recommended by OpenAI in their official deployment guide at https://developers.openai.com/apps-sdk/deploy"
         }
-      ],
-      "note": "No fixed maximum number of providers. ~10 is already sufficient."
+      ]
     },
     "condition_3_ping_frequency_validated": {
       "description": "The interval between pings has been chosen deliberately, based on evidence — not left at the default 2-hour interval.",
       "question_to_answer": "Does pinging every 2 hours keep the MCP server warm, so that measured latency is lower than what a real user would experience on a cold server?",
       "risk": "If multiple pingers hit the same MCP server at the same time or within a short window, the server may stay warm between pings. The benchmark would then measure warm-start latency, not cold-start latency. Cold-start latency is what a real user experiences after a period of inactivity.",
       "done_when": "A decision has been made on ping frequency — either: (a) the interval is long enough to guarantee cold starts (to be determined per hosting provider), or (b) the benchmark explicitly documents that it measures warm-start latency and explains why that is the chosen methodology.",
-      "current_interval": "every 2 hours at even UTC hours (0 */2 * * *)",
-      "note": "Pinger schedules are currently synchronized — all pingers fire at the same UTC hour. This synchronization may amplify the warm-start effect. Staggering pinger schedules is one option to investigate."
+      "current_state": "Interval is every 2 hours at even UTC hours (cron: 0 */2 * * *). All pingers are synchronized on the same UTC hour, which may amplify the warm-start effect."
     }
-  }
+  },
+  "when_to_use": "Read this file when you need to understand what this benchmarker project produces, or to answer the question: 'Is the benchmarker complete?' — compare the current state of each condition in output_is_complete_when against reality.",
+  "when_not_to_use": "To discover the individual pipeline components — read pipeline_components.json in this same repo instead."
 }
