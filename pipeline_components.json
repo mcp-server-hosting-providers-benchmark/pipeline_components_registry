@@ -30,24 +30,18 @@
     "component_verify_schedule": "once a day at 3h UTC"
   },
   {
+    "component_name": "mcp_client_geo_origin_mapper",
+    "component_contract_url": null,
+    "component_output_url": null,
+    "component_verify_reports_url": null,
+    "component_verify_schedule": null,
+    "when_to_use": "Read component_contract_url to understand what geographic regions each LLM client (Claude API, Claude.ai, Claude iOS, ChatGPT.com, etc.) uses to send HTTP requests to MCP servers. Read component_output_url to get the actual region data needed to position type B latency probes in the benchmark pipeline."
+  },
+  {
     "component_name": "tools_list_latency_measurer",
     "component_contract_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/tools_list_latency_measurer/main/component_contract.json",
     "component_output_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/tools_list_latency_measurer/git/trees/data?recursive=1",
     "component_verify_reports_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/tools_list_latency_measurer/git/trees/data?recursive=1",
     "component_verify_schedule": "once a day at 3h UTC"
-  },
-  {
-    "component_name": "latency_measurement_results_collector",
-    "component_contract_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/latency_measurement_results_collector/main/component_contract.json",
-    "component_output_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/latency_measurement_results_collector/git/trees/data?recursive=1",
-    "component_verify_reports_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/latency_measurement_results_collector/git/trees/data?recursive=1",
-    "component_verify_schedule": null
-  },
-  {
-    "component_name": "pipeline_migration_verification_checklist",
-    "component_contract_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_migration_verification_checklist/main/component_contract.json",
-    "component_output_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/pipeline_migration_verification_checklist/main/post_migration_verification_checklist.json",
-    "component_verify_reports_url": "https://api.github.com/repos/mcp-server-hosting-providers-benchmark/pipeline_migration_verification_checklist/git/trees/data?recursive=1",
-    "component_verify_schedule": null
   }
 ]
