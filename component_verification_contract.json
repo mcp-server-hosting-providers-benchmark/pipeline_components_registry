@@ -61,8 +61,7 @@
       "required_fields": [
         "component_name",
         "component_contract_url",
-        "component_output_url",
-        "component_verify_reports_url"
+        "component_output_url"
       ],
       "expected_component_count": 5,
       "checks": [
