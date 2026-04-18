@@ -7,11 +7,6 @@
     "condition_1_pinger_geographic_coverage": {
       "description": "Pingers (scripts that call each MCP server and record response time) are deployed in all major regions of the world.",
       "pinger_platform_decision": "All pingers will be migrated to Google Cloud Run. Reasons: (1) GCR covers all 7 required regions including Middle East with 44 available regions; (2) free tier is permanent (2M requests/month, no time limit); (3) eliminates dependency on a local MacBook that goes offline; (4) eliminates GitHub Actions 90-day data retention concern for pinger jobs; (5) a single CLI (gcloud) manages all pingers across all regions. GitHub remains for code storage, result data (git commits on the data branch are permanent), and GitHub Pages publishing.",
-      "current_pingers_to_migrate": [
-        { "name": "MacBook Paris (launchd)", "status": "to_migrate", "issue": "goes offline when the Mac is turned off" },
-        { "name": "GitHub Actions (various US cities)", "status": "to_migrate", "issue": "90-day retention limit on GitHub Actions job data" },
-        { "name": "GitLab CI (North Charleston SC)", "status": "to_migrate", "issue": "redundant once GCR pingers are in place" }
-      ],
       "required_regions": [
         "Europe",
         "North America",
