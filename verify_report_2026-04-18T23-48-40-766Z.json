@@ -1,0 +1,83 @@
+{
+  "component": "pipeline_components_registry",
+  "verified_at": "2026-04-18T23:48:40.298Z",
+  "summary": {
+    "pass": 18,
+    "fail": 0,
+    "total": 18
+  },
+  "checks": [
+    {
+      "id": "registry_url_responds",
+      "status": "pass"
+    },
+    {
+      "id": "registry_returns_valid_json",
+      "status": "pass"
+    },
+    {
+      "id": "component_contract_accessible",
+      "status": "pass"
+    },
+    {
+      "id": "registry_has_self_entry",
+      "status": "pass"
+    },
+    {
+      "id": "self_entry_has_output_url",
+      "status": "pass"
+    },
+    {
+      "id": "self_entry_output_url_matches",
+      "status": "pass"
+    },
+    {
+      "id": "verify_script_present",
+      "status": "pass"
+    },
+    {
+      "id": "expected_component_count",
+      "status": "pass"
+    },
+    {
+      "id": "entry_required_fields_benchmarker_contract",
+      "status": "pass"
+    },
+    {
+      "id": "entry_required_fields_pipeline_components_registry",
+      "status": "pass"
+    },
+    {
+      "id": "entry_required_fields_mcp_server_per_hosting_provider",
+      "status": "pass"
+    },
+    {
+      "id": "entry_required_fields_tools_list_latency_measurer",
+      "status": "pass"
+    },
+    {
+      "id": "entry_required_fields_tools_list_latency_publisher",
+      "status": "pass"
+    },
+    {
+      "id": "contract_url_accessible_benchmarker_contract",
+      "status": "pass"
+    },
+    {
+      "id": "contract_url_accessible_pipeline_components_registry",
+      "status": "pass"
+    },
+    {
+      "id": "contract_url_accessible_mcp_server_per_hosting_provider",
+      "status": "pass"
+    },
+    {
+      "id": "contract_url_accessible_tools_list_latency_measurer",
+      "status": "pass"
+    },
+    {
+      "id": "contract_url_accessible_tools_list_latency_publisher",
+      "status": "pass"
+    }
+  ]
+}
