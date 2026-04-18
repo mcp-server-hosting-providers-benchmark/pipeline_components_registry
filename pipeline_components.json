@@ -13,12 +13,6 @@
     "component_verify_schedule": "on workflow_dispatch"
   },
   {
-    "component_name": "hosting_providers_metadata",
-    "component_contract_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/mcp_server_per_hosting_provider/main/hosting_providers_metadata.json",
-    "component_output_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/mcp_server_per_hosting_provider/main/hosting_providers_metadata.json",
-    "when_to_use": "Read component_output_url to answer non-latency questions about each hosting provider: whether a credit card is required, whether deployment can be done by an agent from the terminal, what the free tier limits are, and why some providers are excluded from the benchmark."
-  },
-  {
     "component_name": "mcp_server_per_hosting_provider",
     "component_contract_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/mcp_server_per_hosting_provider/main/component_contract.json",
     "component_output_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/mcp_server_per_hosting_provider/main/mcp_servers_under_test.json"
@@ -27,5 +21,10 @@
     "component_name": "tools_list_latency_measurer",
     "component_contract_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/tools_list_latency_measurer/main/component_contract.json",
     "component_output_url": "gs://mcp-benchmark-results"
+  },
+  {
+    "component_name": "tools_list_latency_publisher",
+    "component_contract_url": "https://raw.githubusercontent.com/mcp-server-hosting-providers-benchmark/tools_list_latency_publisher/main/component_contract.json",
+    "component_output_url": "https://mcp-server-hosting-providers-benchmark.github.io/tools_list_latency_publisher/llms.json"
   }
 ]
