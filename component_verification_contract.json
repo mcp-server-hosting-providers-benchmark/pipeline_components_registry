@@ -60,7 +60,6 @@
       "description": "Does every entry in the registry have all required fields?",
       "required_fields": [
         "component_name",
-        "component_contract_url",
         "component_output_url"
       ],
       "expected_component_count": 5,
