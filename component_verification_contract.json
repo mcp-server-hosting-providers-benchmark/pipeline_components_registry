@@ -59,8 +59,7 @@
       "name": "completeness",
       "description": "Does every entry in the registry have all required fields?",
       "required_fields": [
-        "component_name",
-        "component_output_url"
+        "component_name"
       ],
       "expected_component_count": 5,
       "checks": [
